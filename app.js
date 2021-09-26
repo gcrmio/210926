@@ -85,7 +85,7 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 
-
+/*
 const { Pool, Client } = require('pg');
 
 const pool = new Pool({
@@ -96,7 +96,7 @@ const pool = new Pool({
     port: 5432,
     ssl: { rejectUnauthorized: false },
 });
-
+*/
 /*
 pool.query('INSERT INTO mms_list VALUES( $1, $2, $3)', ['10','999','MMM'], (err, res) => {
     console.log(res); // Hello World!
