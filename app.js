@@ -1,7 +1,7 @@
 'use strict';
 // Module Dependencies
 // -------------------
-var express     = require('express');
+var express     = require('express');   
 var bodyParser  = require('body-parser');
 var errorhandler = require('errorhandler');
 var http        = require('http');
@@ -58,30 +58,39 @@ app.post('/journeybuilder/execute/', activity.execute );
 
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-
-  app.use((req, res, next) => {
-    var pathname=url.parse(req.url).pathname;
-    console.log('Pathname: '+pathname);
-  /*
-    switch(pathname){
-        case '/routes/activity.js':
-            res.end('activity');
-        break;
-        case '/public/js/customActivity.js':
-            res.end('customActivity');
-        break;
-        case '/journeybuilder/save/':
-            res.end('/journeybuilder/save/');
-        break;
-        default:
-            res.end('default');
-        break;
-    }
-*/    
-      next();
-   });
-});
+    console.log('Express server listening on port ' + app.get('port'));
+  
+    app.use((req, res, next) => {
+      var pathname=url.parse(req.url).pathname;
+      console.log('Pathname: '+pathname);
+    
+      switch(pathname){
+          case '/routes/activity.js':
+              res.end('activity');
+          break;
+          case '/public/js/customActivity.js':
+              res.end('customActivity');
+          break;
+          case '/journeybuilder/save/':
+              res.end('/journeybuilder/save/');
+          break;
+  //        case '/de/addDE/':
+  //            de.addDE(req,res);
+  //            res.end('/de/addDE/');
+  //            break;
+          case '/routes/mcapi/':
+              console.log('mcapi is called ');
+              mcapi.checkapi(req,res);
+              res.end('/routes/mcapi/');
+              break;
+          default:
+              res.end('default');
+          break;
+      }
+      
+        next();
+     });
+  });
 
 
 
